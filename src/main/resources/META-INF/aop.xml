@@ -1,0 +1,22 @@
+<aspectj>
+
+  <aspects>
+    <aspect name="de.scrum_master.app.MyAspect"/>
+  </aspects>
+
+  <weaver options="-verbose -showWeaveInfo">
+
+    <!-- Option A (recommended): Only include your application packages of interest -->
+    <!--<include within="de.scrum_master..*"/>-->
+
+    <!-- Option B: Explicitly exclude Maven, JUnit, JaCoCo and JDK proxies from weaving -->
+    <!--
+    <exclude within="org.apache.maven.surefire..*"/>
+    <exclude within="org.junit..*"/>
+    <exclude within="org.jacoco..*"/>
+    <exclude within="com.sun.proxy..*"/>
+    -->
+
+  </weaver>
+
+</aspectj>
