@@ -7,7 +7,7 @@
   <weaver options="-verbose -showWeaveInfo">
 
     <!-- Option A (recommended): Only include your application packages of interest -->
-    <!--<include within="de.scrum_master..*"/>-->
+    <include within="de.scrum_master..*"/>
 
     <!-- Option B: Explicitly exclude Maven, JUnit, JaCoCo and JDK proxies from weaving -->
     <!--
