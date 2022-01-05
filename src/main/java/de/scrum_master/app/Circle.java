@@ -1,6 +1,6 @@
 package de.scrum_master.app;
 
-public class Circle implements Shape {
+public final class Circle implements Shape {
   private double radius;
 
   public Circle(double radius) {
