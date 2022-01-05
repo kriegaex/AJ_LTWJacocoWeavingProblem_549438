@@ -6,11 +6,7 @@ import org.aspectj.lang.annotation.Before;
 
 @Aspect
 public class MyAspect {
-  @Before(
-    "execution(* *(..)) && !within(MyAspect)"
-      + " && !execution(* *..$jacoco*(..))"
-      //+ " && within(de.scrum_master..*)"
-  )
+  @Before("execution(* *(..)) && !within(MyAspect)")
   public void myAdvice(JoinPoint joinPoint) {
     System.out.println(joinPoint);
   }

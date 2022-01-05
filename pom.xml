@@ -31,11 +31,14 @@
           <forkNode implementation="org.apache.maven.plugin.surefire.extensions.SurefireForkNodeFactory"/>
           <!-- TODO: Remove after SUREFIRE-1809, SUREFIRE-1882 are fixed in M6 (M6-SNAPSHOT test with JDK 14 was OK) -->
           <useModulePath>false</useModulePath>
-          <!-- AspectJ Weaver needs access to java.base/java.lang on JDK 16+ -->
+          <!--
+            AspectJ Weaver needs access to java.base/java.lang on JDK 16+.
+            '@{argLine}' contains the JaCoCo agent parameters. Make sure it is applied after AspectJ.
+          -->
           <argLine>
-            @{argLine}
             --add-opens java.base/java.lang=ALL-UNNAMED
             -javaagent:${user.home}/.m2/repository/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+            @{argLine}
           </argLine>
           <trimStackTrace>false</trimStackTrace>
         </configuration>
