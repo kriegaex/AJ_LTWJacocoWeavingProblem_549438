@@ -9,3 +9,6 @@
 
 # Maven
 target/
+
+# AspectJ LTW
+_ajdump/

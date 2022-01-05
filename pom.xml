@@ -24,6 +24,19 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>2.5</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <!-- Clean up dumped class files from AspectJ weaver when using 'dump within' option -->
+              <directory>_ajdump</directory>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven-surefire-plugin.version}</version>
         <configuration>
@@ -37,8 +50,8 @@
           -->
           <argLine>
             --add-opens java.base/java.lang=ALL-UNNAMED
-            -javaagent:${user.home}/.m2/repository/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
             @{argLine}
+            -javaagent:${user.home}/.m2/repository/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
           </argLine>
           <trimStackTrace>false</trimStackTrace>
         </configuration>

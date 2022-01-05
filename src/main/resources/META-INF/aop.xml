@@ -17,6 +17,8 @@
     <exclude within="com.sun.proxy..*"/>
     -->
 
+    <dump within="de.scrum_master.app..*" beforeandafter="true"/>
+
   </weaver>
 
 </aspectj>
