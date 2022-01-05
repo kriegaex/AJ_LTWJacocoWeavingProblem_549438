@@ -15,7 +15,7 @@
     <maven.compiler.target>17</maven.compiler.target>
 
     <junit.version>4.13.2</junit.version>
-    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+    <maven-surefire-plugin.version>3.0.0-M6-SNAPSHOT</maven-surefire-plugin.version>
     <aspectj.version>1.9.8.RC3</aspectj.version>
     <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
   </properties>
@@ -27,6 +27,11 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven-surefire-plugin.version}</version>
         <configuration>
+          <!-- Fix for "[WARNING] Corrupted STDOUT by directly writing to native stream in forked JVM" -->
+          <forkNode implementation="org.apache.maven.plugin.surefire.extensions.SurefireForkNodeFactory"/>
+          <!-- TODO: Remove after SUREFIRE-1809, SUREFIRE-1882 are fixed in M6 (M6-SNAPSHOT test with JDK 14 was OK) -->
+          <useModulePath>false</useModulePath>
+          <!-- AspectJ Weaver needs access to java.base/java.lang on JDK 16+ -->
           <argLine>
             @{argLine}
             --add-opens java.base/java.lang=ALL-UNNAMED
